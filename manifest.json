@@ -14,8 +14,8 @@
             "48": "images/icon48.png",
             "64": "images/icon64.png"
         },
-        "default_title": "Options",
-        "default_popup": "options.html"
+        "default_title": "StaRNG",
+        "default_popup": "popup.html"
     },
     "commands": {
         "select-star": {
