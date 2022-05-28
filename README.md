@@ -1,2 +1,2 @@
 # StaRNG
-Chrome extension to choose a random bookmark
+Chrome extension to select a random bookmark
