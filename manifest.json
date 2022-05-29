@@ -8,11 +8,10 @@
     "options_page": "options.html",
     "action": {
         "default_icon": {
-            "16": "images/icon16.png",
-            "24": "images/icon24.png",
-            "32": "images/icon32.png",
-            "48": "images/icon48.png",
-            "64": "images/icon64.png"
+            "16": "static/images/icon-16.png",
+            "24": "static/images/icon-24.png",
+            "32": "static/images/icon-32.png",
+            "64": "static/images/icon-64.png"
         },
         "default_title": "StaRNG",
         "default_popup": "popup.html"
@@ -31,14 +30,13 @@
         "storage"
     ],
     "icons": {
-        "16": "images/icon16.png",
-        "24": "images/icon24.png",
-        "32": "images/icon32.png",
-        "48": "images/icon48.png",
-        "64": "images/icon64.png",
-        "128": "images/icon128.png",
-        "256": "images/icon256.png",
-        "512": "images/icon512.png"
+        "16": "static/images/icon-16.png",
+        "24": "static/images/icon-24.png",
+        "32": "static/images/icon-32.png",
+        "64": "static/images/icon-64.png",
+        "128": "static/images/icon-128.png",
+        "256": "static/images/icon-256.png",
+        "512": "static/images/icon-512.png"
     },
     "default_locale": "en",
     "manifest_version": 3
