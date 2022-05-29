@@ -3,9 +3,9 @@
     "description": "Random bookmark selector",
     "version": "1.0",
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "js/background.js"
     },
-    "options_page": "options.html",
+    "options_page": "static/html/options.html",
     "action": {
         "default_icon": {
             "16": "static/images/icon-16.png",
@@ -14,7 +14,7 @@
             "64": "static/images/icon-64.png"
         },
         "default_title": "StaRNG",
-        "default_popup": "popup.html"
+        "default_popup": "static/html/popup.html"
     },
     "commands": {
         "select-star": {
