@@ -19,10 +19,9 @@
     "commands": {
         "select-star": {
             "suggested_key": {
-                "default": "Ctrl+Shift+S",
-                "mac": "MacCtrl+Shift+S"
+                "default": "Alt+S"
             },
-            "description": "Select random bookmark and open in current tab."
+            "description": "Select and open random bookmark"
         }
     },
     "permissions": [
@@ -38,6 +37,5 @@
         "256": "static/images/icon-256.png",
         "512": "static/images/icon-512.png"
     },
-    "default_locale": "en",
     "manifest_version": 3
 }
