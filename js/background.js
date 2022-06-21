@@ -1,5 +1,7 @@
 let autoNewTab = true;
 let selectorTypeBFS = true;
+let includeEmptyFolders = true;
+let bookmarkArray = [];
 
 chrome.commands.onCommand.addListener((command) => {
     if (command === "select-star") {
@@ -17,7 +19,14 @@ async function selectStar() {
         selection = selectDFS(bookmarkTree);
     }
 
-    openTab(selection)
+    // openTab(selection)
+    start = performance.now();
+    bookmarkArray = [];
+    traverseBookmarkTree(bookmarkTree[0]);
+    end = performance.now();
+    console.log(end - start);
+    console.log(bookmarkArray);
+    console.log(bookmarkArray.length);
 
 }
 
@@ -36,7 +45,24 @@ function selectBFS(bookmarkTree) {
 
 
 function selectDFS(bookmarkTree) {
-    console.log(bookmarkTree);
+    bookmarkArray = [];
+    traverseBookmarkTree(bookmarkTree);
+    let selectionIndex = Math.floor(Math.random() * bookmarkArray.length)
+    let selection = bookmarkArray[selectionIndex]
+    return selection
+}
+
+
+function traverseBookmarkTree(bookmarkTree) {
+    if (!("children" in bookmarkTree) || (selection.children.length === 0 && includeEmptyFolders)) {
+        bookmarkArray.push(bookmarkTree)
+        return
+    }
+
+    numChildren = bookmarkTree.length;
+    for (let i = 0; i < numChildren; i++) {
+        traverseBookmarkTree(bookmarkTree[i].children)
+    }
 }
 
 
