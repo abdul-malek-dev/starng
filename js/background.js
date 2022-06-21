@@ -1,5 +1,5 @@
 let autoNewTab = true;
-let selectorTypeBFS = true;
+let useDeepSelect = true;
 let includeEmptyFolders = true;
 let bookmarkArray = [];
 
@@ -12,27 +12,18 @@ chrome.commands.onCommand.addListener((command) => {
 async function selectStar() {
     let bookmarkTree = await chrome.bookmarks.getTree();
     let selection = undefined
-    console.log(bookmarkTree)
 
-    if (selectorTypeBFS === true) {
-        selection = selectBFS(bookmarkTree);
+    if (useDeepSelect === true) {
+        selection = deepSelect(bookmarkTree);
     } else {
-        selection = selectDFS(bookmarkTree);
+        selection = flatSelect(bookmarkTree);
     }
 
-    // openTab(selection)
-    bookmarkArray = [];
-    start = performance.now();
-    traverseBookmarkTree(bookmarkTree);
-    end = performance.now();
-
-    console.log(end - start);
-    console.log(bookmarkArray.length);
-
+    openTab(selection)
 }
 
 
-function selectBFS(bookmarkTree) {
+function flatSelect(bookmarkTree) {
     let numChildren = bookmarkTree.length
     let selectionNum = Math.floor(Math.random() * numChildren)
     let selection = bookmarkTree[selectionNum]
@@ -40,12 +31,12 @@ function selectBFS(bookmarkTree) {
     if (!("children" in selection) || selection.children.length === 0) {
         return selection;
     } else {
-        return selectBFS(selection.children);
+        return flatSelect(selection.children);
     }
 }
 
 
-function selectDFS(bookmarkTree) {
+function deepSelect(bookmarkTree) {
     bookmarkArray = [];
     traverseBookmarkTree(bookmarkTree);
     let selectionIndex = Math.floor(Math.random() * bookmarkArray.length)
@@ -58,7 +49,7 @@ function traverseBookmarkTree(bookmarkTree) {
     let numChildren = bookmarkTree.length;
     for (let i = 0; i < numChildren; i++) {
         let node = bookmarkTree[i]
-        if (!("children" in node) || (node.children.length === 0 && includeEmptyFolders)) {
+        if (!("children" in node) || (includeEmptyFolders && node.children.length === 0)) {
             bookmarkArray.push(node)
         } else {
             traverseBookmarkTree(node.children)
