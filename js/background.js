@@ -12,6 +12,7 @@ chrome.commands.onCommand.addListener((command) => {
 async function selectStar() {
     let bookmarkTree = await chrome.bookmarks.getTree();
     let selection = undefined
+    console.log(bookmarkTree)
 
     if (selectorTypeBFS === true) {
         selection = selectBFS(bookmarkTree);
@@ -20,12 +21,12 @@ async function selectStar() {
     }
 
     // openTab(selection)
-    start = performance.now();
     bookmarkArray = [];
-    traverseBookmarkTree(bookmarkTree[0]);
+    start = performance.now();
+    traverseBookmarkTree(bookmarkTree);
     end = performance.now();
+
     console.log(end - start);
-    console.log(bookmarkArray);
     console.log(bookmarkArray.length);
 
 }
@@ -54,14 +55,14 @@ function selectDFS(bookmarkTree) {
 
 
 function traverseBookmarkTree(bookmarkTree) {
-    if (!("children" in bookmarkTree) || (selection.children.length === 0 && includeEmptyFolders)) {
-        bookmarkArray.push(bookmarkTree)
-        return
-    }
-
-    numChildren = bookmarkTree.length;
+    let numChildren = bookmarkTree.length;
     for (let i = 0; i < numChildren; i++) {
-        traverseBookmarkTree(bookmarkTree[i].children)
+        let node = bookmarkTree[i]
+        if (!("children" in node) || (node.children.length === 0 && includeEmptyFolders)) {
+            bookmarkArray.push(node)
+        } else {
+            traverseBookmarkTree(node.children)
+        }
     }
 }
 
