@@ -6,3 +6,4 @@ Chrome extension to select a random bookmark
 - Add syncing functionality
 - Add exclusion functionality
 - Add final options/popup pages
+- Add bookmark on-change functionality
